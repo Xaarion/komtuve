@@ -5,7 +5,7 @@
       <GlobalConfig />
       <div class="card mt-3">
         <vmHeader />
-        <virtualMachina />  
+
       </div>  
     </div>
   </div>
@@ -19,7 +19,7 @@
 
 import GlobalConfig from '@/components/GlobalConfig.vue'
 import vmHeader from '@/components/vmHeader.vue'
-import virtualMachina from '@/components/virtualMachina.vue'
+
 
 
 export default {
@@ -27,7 +27,6 @@ export default {
   components: {
     GlobalConfig,
     vmHeader,
-    virtualMachina
   }
 }
 </script>
