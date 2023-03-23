@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="contailer-fluid">
+
+      <GlobalConfig />
+      <div class="card mt-3">
+        <vmHeader />
+        <virtualMachina />  
+      </div>  
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
+
+
+
+import GlobalConfig from '@/components/GlobalConfig.vue'
+import vmHeader from '@/components/vmHeader.vue'
+import virtualMachina from '@/components/virtualMachina.vue'
+
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    GlobalConfig,
+    vmHeader,
+    virtualMachina
   }
 }
 </script>
