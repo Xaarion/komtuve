@@ -1,5 +1,8 @@
 export const datas = {
 
-nbrVm: 3
+nbrVm: 3,
+
+
+sequence: [0]
 
 }
