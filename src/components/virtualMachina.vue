@@ -16,7 +16,6 @@
             placeholder=""
             aria-label="Exemple de texte avec un bouton Addon"
             aria-describedby="button-addon1"
-            v-model="memoir.sequence[CVM]"
           />
           <div class="input-group-prepend">
             <button class="btn trash-fill" type="button"></button>
@@ -37,7 +36,7 @@
 </template>
 
 <script>
-import { datas } from "../store.js";
+import { store } from "../store.js";
 
 export default {
   name: "virtualMachina",
@@ -47,7 +46,7 @@ export default {
 
   data() {
     return {
-      memoir: datas,
+      dataStore: store,
       CVM: 0,
     };
   },
@@ -60,11 +59,14 @@ export default {
 
     
     sup(ccvm) {
-    this.memoir.sequence.splice[(ccvm -1),1];
-    console.log(this.memoir.sequence[ccvm]);
-    //this.memoir.nbrVm = (this.memoir.nbrVm -1);
+    this.dataStore.data.sequence.splice[(ccvm -1),1];
+    console.log(this.dataStore.data.sequence[ccvm]);
+    //this.dataStore.nbrVm = (this.dataStore.nbrVm -1);
 
     },
+
+
+
   },
 
 

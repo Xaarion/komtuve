@@ -1,8 +1,6 @@
-export const datas = {
-
-nbrVm: 3,
-
-
-sequence: [0]
-
+export const store = {
+    data: {
+        nbrVm: 0,
+        sequence: []
+    }
 }
