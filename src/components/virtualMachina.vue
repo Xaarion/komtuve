@@ -2,8 +2,8 @@
   <div class="card bg-light">
     <div class="card-header">
       <div class="form-inline">
-        <label>VM {{ nombredevm }}</label>
-        <button class="btn x-square-fill ml-auto" type="button" @click="sup(nombredevm)"></button>
+        <label>VM {{ nombredelavm }}</label>
+        <button class="btn x-square-fill ml-auto" type="button" @click="sup(nombredelavm)"></button>
       </div>
     </div>
     <div class="card-body">
@@ -16,6 +16,7 @@
             placeholder=""
             aria-label="Exemple de texte avec un bouton Addon"
             aria-describedby="button-addon1"
+            v-model="memoirVm"
           />
           <div class="input-group-prepend">
             <button class="btn trash-fill" type="button"></button>
@@ -41,18 +42,32 @@ import { store } from "../store.js";
 export default {
   name: "virtualMachina",
   props: {
-    nombredevm: Number,
+    nombredelavm: Number,
   },
 
   data() {
     return {
       dataStore: store,
-      CVM: 0,
+      memoirVm: "",
     };
   },
 
+  
+
   mounted() {
-    this.CVM = this.nombredevm;
+
+    this.memoirVm = this.dataStore.data.sequence[this.nombredelavm].memoire
+
+  },
+
+  watch: {
+    memoirVm() {
+
+
+      this.dataStore.data.sequence[this.nombredelavm].memoire = this.memoirVm
+
+
+    }
   },
 
   methods: {
