@@ -53,7 +53,6 @@ export default {
   watch: {
     wantedNbVm() {
       this.changeVM();
-
       this.dataStore.data.nbrVm = this.wantedNbVm;
     },
   },
@@ -66,7 +65,9 @@ export default {
         this.dataStore.data.sequence.push({
           memoire: "",
           id: this.dataStore.data.sequence.length,
+
         });
+        console.log(this.dataStore.data.sequence.length)
       }
     },
   },
