@@ -78,7 +78,9 @@ export default {
     this.dataStore.data.sequence.splice(ccvm, 1);
     console.log("Vm sup" + (ccvm + 1));
     
-    console.log("Taille de la liste avant sup :" + this.dataStore.data.sequence.length);
+    console.log("Taille de la liste avant sup :" + this.dataStore.data.sequence.length);  
+
+    this.$emit('majNbrVm')
 
     },
 
