@@ -2,7 +2,7 @@
   <div class="card bg-light">
     <div class="card-header">
       <div class="form-inline">
-        <label>VM {{ nombredelavm }}</label>
+        <label>VM {{ nombredelavm + 1 }}</label>
         <button class="btn x-square-fill ml-auto" type="button" @click="sup(nombredelavm)"></button>
       </div>
     </div>
@@ -74,9 +74,11 @@ export default {
 
     
     sup(ccvm) {
-    this.dataStore.data.sequence.splice[(ccvm -1),1];
-    console.log(this.dataStore.data.sequence[ccvm]);
-    //this.dataStore.nbrVm = (this.dataStore.nbrVm -1);
+      console.log("Taille de la liste avant sup :" + this.dataStore.data.sequence.length);
+    this.dataStore.data.sequence.splice(ccvm, 1);
+    console.log("Vm sup" + (ccvm + 1));
+    
+    console.log("Taille de la liste avant sup :" + this.dataStore.data.sequence.length);
 
     },
 
