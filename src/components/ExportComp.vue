@@ -9,4 +9,20 @@
                             </div>
                         </form>
                     </div>
-</template>
+</template> 
+
+<script>
+
+import { store } from "../store.js";
+
+export default {
+  name: "ExportComp",
+
+  data() {
+    return {
+      dataStore: store,
+    };
+  },
+
+}
+</script>

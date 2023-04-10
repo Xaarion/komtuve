@@ -10,17 +10,23 @@
           class="form-control"
           id="inputNumberOfVM"
           placeholder="Nombre de VM"
-          v-model="wantedNbVm"
+          @change="changeInputVm($event)"
+          v-bind:value="wantedNbVm"
         />
       </div>
     </form>
     <div class="card-body">
       <div class="card-columns">
-        <div
+        <div>
+          <virtualMachinaVue 
           v-for="i in dataStore.data.sequence"
-          :key="dataStore.data.sequence[i]"
-        >
-          <virtualMachinaVue v-bind:nombredelavm="i.id"></virtualMachinaVue>
+          
+          :key="i.id"
+
+          v-bind:nombredelavm="i.id"
+          
+          @majNbrVm="majVm"
+          ></virtualMachinaVue>
         </div>
       </div>
     </div>
@@ -49,26 +55,64 @@ export default {
     console.log(this.wantedNbVm);
   },
 
-
-  watch: {
-    wantedNbVm() {
-      this.changeVM();
-      this.dataStore.data.nbrVm = this.wantedNbVm;
-    },
-  },
-  
   methods: {
-    changeVM() {
-      this.dataStore.data.sequence = [];
-
-      for (let i = 0; i < this.wantedNbVm; i++) {
-        this.dataStore.data.sequence.push({
-          memoire: "",
-          id: this.dataStore.data.sequence.length,
-
-        });
-        console.log(this.dataStore.data.sequence.length)
+    changeInputVm($event) {
+      if ($event.target.value > 0) {
+        this.dataStore.data.nbrVm = this.wantedNbVm;
+        console.log($event.target.value);
+        this.changeVM($event.target.value, this.wantedNbVm);
+        this.wantedNbVm = $event.target.value;
       }
+      else{
+        this.dataStore.data.sequence = [];
+      this.wantedNbVm = this.dataStore.data.sequence.length;
+      }
+    },
+
+    changeVM(newNbVm, oldNbVm) {
+      if (newNbVm > oldNbVm) {
+
+
+        if (this.dataStore.data.sequence.length > 0) {
+          this.dataStore.data.sequence.push({
+            memoire: "",
+            HDD: "",
+            Coeur: "",
+            Socket: "",
+            id:
+              this.dataStore.data.sequence[this.dataStore.data.sequence.length - 1].id + 1,
+            
+            memoireInput: false,
+            HDDInput: false,
+            CoeurInput: false,
+            SocketInput: false,
+
+          }); 
+
+
+
+        } else {
+          this.dataStore.data.sequence.push({          
+
+            memoire: "",
+            id: this.dataStore.data.sequence.length,
+          });
+        }
+      } else {
+        this.dataStore.data.sequence.splice(
+          this.dataStore.data.sequence.length - 1,
+          1
+        );
+      }
+      //console.log("Nombre de VM :" + this.dataStore.data.sequence.length);
+
+      //console.log("id vm max :" + this.dataStore.data.sequence[this.dataStore.data.sequence.length -1].id)
+    },
+
+    majVm() {
+      this.dataStore.data.nbrVm = this.dataStore.data.sequence.length;
+      this.wantedNbVm = this.dataStore.data.nbrVm;
+      console.log("Augh");
     },
   },
 };

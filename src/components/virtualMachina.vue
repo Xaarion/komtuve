@@ -2,7 +2,7 @@
   <div class="card bg-light">
     <div class="card-header">
       <div class="form-inline">
-        <label>VM {{ nombredelavm + 1 }}</label>
+        <label>VM {{ nombredelavm +1 }}</label>
         <button class="btn x-square-fill ml-auto" type="button" @click="sup(nombredelavm)"></button>
       </div>
     </div>
@@ -52,20 +52,21 @@ export default {
     };
   },
 
-  
-
   mounted() {
 
-    this.memoirVm = this.dataStore.data.sequence[this.nombredelavm].memoire
+    const found = this.dataStore.data.sequence.find(element => element.id == this.nombredelavm);
+
+    this.memoirVm = found.memoire;
 
   },
+
 
   watch: {
     memoirVm() {
 
+      const found = this.dataStore.data.sequence.find(element => element.id == this.nombredelavm);
 
-      this.dataStore.data.sequence[this.nombredelavm].memoire = this.memoirVm
-
+       found.memoire = this.memoirVm;
 
     }
   },
@@ -74,14 +75,33 @@ export default {
 
     
     sup(ccvm) {
+
+      if (this.dataStore.data.sequence.length == 1){
+        this.dataStore.data.sequence = [];
+      
+      } else {
       console.log("Taille de la liste avant sup :" + this.dataStore.data.sequence.length);
-    this.dataStore.data.sequence.splice(ccvm, 1);
+
+
+      
+    
+
+
+    const found = this.dataStore.data.sequence.find(element => element.id == ccvm);
+
+    const indexVmASup = this.dataStore.data.sequence.indexOf(found)
+
+    this.dataStore.data.sequence.splice(indexVmASup, 1);
+
     console.log("Vm sup" + (ccvm + 1));
+
+   //this.dataStore.data.nbrVm =  (this.dataStore.data.nbrVm - 1)
     
     console.log("Taille de la liste avant sup :" + this.dataStore.data.sequence.length);  
-
+}
     this.$emit('majNbrVm')
 
+  
     },
 
 
