@@ -51,7 +51,7 @@ export default {
   },
 
   mounted() {
-    this.wantedNbVm = this.dataStore.data.nbrVm;
+    this.wantedNbVm = this.dataStore.data.sequence.length;
     console.log(this.wantedNbVm);
   },
 
@@ -76,9 +76,9 @@ export default {
         if (this.dataStore.data.sequence.length > 0) {
           this.dataStore.data.sequence.push({
             memoire: "",
-            HDD: "",
-            Coeur: "",
-            Socket: "",
+            hDD: "",
+            coeur: "",
+            socket: "",
             id:
               this.dataStore.data.sequence[this.dataStore.data.sequence.length - 1].id + 1,
             
@@ -93,9 +93,18 @@ export default {
 
         } else {
           this.dataStore.data.sequence.push({          
-
             memoire: "",
-            id: this.dataStore.data.sequence.length,
+            hDD: "",
+            coeur: "",
+            socket: "",
+          id: this.dataStore.data.sequence.length,
+            
+            memoireInput: false,
+            HDDInput: false,
+            CoeurInput: false,
+            SocketInput: false,
+
+           
           });
         }
       } else {
